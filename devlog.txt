@@ -1,0 +1,2 @@
+yuJ -- 2017-10-22
+Added design doc and devlog to root of repo
