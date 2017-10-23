@@ -4,5 +4,5 @@ Added design doc and devlog to root of repo
 roktimA, wengC, yuJ -- 2017-10-22 23:24
 Worked on design doc
 
-roktimA -- 2017-10-23 10:07
-Add basic code
+roktimA -- 2017-10-23 10:33
+Started login system

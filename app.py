@@ -13,11 +13,13 @@ def root():
 def auth():
     if session.get('username'):
         return redirect(url_for('profile'))
+    return render_template('login.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if session.get('username'):
         return redirect(url_for('profile'))
+    return render_template('signup.html')
 
 
 @app.route('/profile', methods=['GET', 'POST'])
