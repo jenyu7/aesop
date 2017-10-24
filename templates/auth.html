@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table>
+  <tr>
+    <td><center>Login</center></td>
+    <td></td>
+    <td><center>Signup</center></td>
+  </tr>
+  <tr>
+    <td>
+      <form action = '/auth' method = 'POST'>
+        Username:<input type = 'text' name = 'username' required><br>
+        Password:<input type = 'password' name = 'password' required><br>
+        <input type = 'submit' name = 'login'>
+      </form>
+    </td>
+    <td>&nbsp;&nbsp;&nbsp;OR&nbsp;&nbsp;&nbsp;</td>
+    <td>
+      <form action = '/auth' method = 'POST'>
+      Username:<input type = 'text' name = 'username' required><br>
+      Password:<input type = 'password' name = 'password0' required><br>
+      Confirm Password:<input type = 'password' name = 'password1' required><br>
+      <input type = 'submit' name = 'signup'>
+    </td>
+  </tr>
+</table>
+
+{% endblock content %}
