@@ -86,7 +86,7 @@ def create(story):
     db.commit()
 
 
-# add the loggin to the database
+# add the login to the database
 def addUser(user, password):
     vals = [user, password]
     c.execute(insert("users", vals))
