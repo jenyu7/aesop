@@ -4,12 +4,11 @@ import sqlite3
 #
 
 
-# initialize database
-db = sqlite3.connect("aesop.db")
-c = db.cursor()
-
 # execute this file to create the initial database
 if __name__ == '__main__':
+    # initialize database
+    db = sqlite3.connect("aesop.db")
+    c = db.cursor()
     # table for user login
     c.execute("CREATE TABLE users (user TEXT, pass TEXT, PRIMARY KEY(user))")
     # table for story ID storage; id is text because it's user created
@@ -27,6 +26,9 @@ story_update = False
 
 # returns a dictionary for user data {user: pass}
 def getUsers():
+    # initialize database
+    db = sqlite3.connect("aesop.db")
+    c = db.cursor()
     a = 'SELECT user, pass FROM users'
     x = c.execute(a)
     users = {}
@@ -37,6 +39,9 @@ def getUsers():
 
 # returns a dictionary for story names {sID: name}
 def getStories():
+    # initialize database
+    db = sqlite3.connect("aesop.db")
+    c = db.cursor()
     a = 'SELECT sID, name FROM stories'
     x = c.execute(a)
     stories = {}
@@ -49,6 +54,9 @@ def getStories():
 
 # returns a list of lists (in order) for story entries [[user, entry],...]
 def getStory(sID):
+    # initialize database
+    db = sqlite3.connect("aesop.db")
+    c = db.cursor()
     name = getStories()[sID]
     a = 'SELECT user, entry FROM ' + name
     x = c.execute(a)
@@ -61,6 +69,9 @@ def getStory(sID):
 # returns a list of lists for all story histories [[sID, user, entry],...]
 # not sure how else to return rows of 3 values
 def getHistory():
+    # initialize database
+    db = sqlite3.connect("aesop.db")
+    c = db.cursor()
     a = 'SELECT sID, user, entry FROM history'
     x = c.execute(a)
     history = []
@@ -71,6 +82,9 @@ def getHistory():
 
 # helper to insert a list of values into the table
 def insert(table, vals):
+    # initialize database
+    db = sqlite3.connect("aesop.db")
+    c = db.cursor()
     x = "INSERT INTO " + table + " VALUES ("
     # add in the values into command
     for a in vals:
@@ -82,12 +96,18 @@ def insert(table, vals):
 
 # create a table for that story
 def create(story):
+    # initialize database
+    db = sqlite3.connect("aesop.db")
+    c = db.cursor()
     c.execute("CREATE TABLE " + story + " (user TEXT, entry TEXT, PRIMARY KEY (user))")
     db.commit()
 
 
 # add the loggin to the database
 def addUser(user, password):
+    # initialize database
+    db = sqlite3.connect("aesop.db")
+    c = db.cursor()
     vals = [user, password]
     c.execute(insert("users", vals))
     db.commit()
@@ -95,6 +115,9 @@ def addUser(user, password):
 
 # creates and adds the story to the database
 def addStory(sID, story):
+    # initialize database
+    db = sqlite3.connect("aesop.db")
+    c = db.cursor()
     create(story)
     vals = [str(sID), story]
     c.execute(insert("stories", vals))
@@ -102,6 +125,9 @@ def addStory(sID, story):
 
 
 def addUpdate(sID, user, entry):
+    # initialize database
+    db = sqlite3.connect("aesop.db")
+    c = db.cursor()
     vals = [str(sID), user, entry]
     c.execute(insert("history", vals))
     story = getUsers()[str(sID)]
