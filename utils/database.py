@@ -16,14 +16,27 @@ if __name__ == '__main__':
     db.commit()
     db.close()
 
+# tracks if the seperate story databases need
+# initialized as false since you can only change the data with this module
+story_update = False
+
 # returns a dictionary for user data {user: pass}
 def getUsers():
-    foo = 'SELECT user, pass FROM users WHERE peeps.id = courses.id'
+    foo = 'SELECT user, pass FROM users'
     x = c.execute(foo)
     users = {}
     for line in x:
         users[line[0]] = line[1]
     return users
+
+def getStories():
+    pass
+
+def getStory(sID):
+    pass
+
+def getHistory():
+    pass
 
 # helper to insert a list of values into the table
 def insert(table, vals):
@@ -35,8 +48,7 @@ def insert(table, vals):
     x = x[:len(x) - 2]
     return x + ")"
 
-
-# a table for that story
+# create a table for that story
 def create(story):
     c.execute("CREATE TABLE " + story + " (user TEXT, update TEXT, PRIMARY KEY (user))")
     db.commit()
@@ -45,16 +57,19 @@ def create(story):
 def addUser(nick, user, password):
     vals = [nick, user, password]
     c.execute(insert("users", vals))
+    db.commit()
 
-
-def addStory(sID, Story):
-    pass
+# creates and adds the story to the database
+def addStory(sID, story):
+    create(story)
+    vals = [sID, story]
+    c.execute(insert("stories", vals))
+    db.commit()
 
 def addUpdate(sID, user, entry):
-    pass
-
-def getStories():
-    pass
-
-def updateStories():
-    pass
+    vals = [sID, user, entry]
+    c.execute(insert("history", vals))
+    story = getUsers()[sID]
+    vals.pop(sID)
+    c.execute(insert(story, vals))
+    db.commit()
