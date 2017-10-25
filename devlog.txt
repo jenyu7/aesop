@@ -16,8 +16,5 @@ Updated database schema with new tables: users, history, and <STORY ID>
 arifR -- 2017-10-23 22:35
 Combined login and signup pages
 
-<<<<<<< HEAD
-=======
 charlesW -- 2017-10-22 22:00
 finished version 1 of database
->>>>>>> 783f2a385f54919e758e067f737a68c7f605d621
