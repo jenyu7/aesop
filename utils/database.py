@@ -15,8 +15,7 @@ if __name__ == '__main__':
     # table for story ID storage; id is text because it's user created
     c.execute("CREATE TABLE stories (sID TEXT, name TEXT, PRIMARY KEY(sID))")
     # table for update history for all stories
-    c.execute("CREATE TABLE history \
-                (sID TEXT, user TEXT, entry TEXT, PRIMARY KEY(sID, user))")
+    c.execute("CREATE TABLE history (sID TEXT, user TEXT, entry TEXT, PRIMARY KEY(sID, user))")
     # save and close database
     db.commit()
     db.close()
