@@ -31,7 +31,7 @@ def authentication():
 def profile():
     if not session.get('username'):
         flash("Not logged in")
-        return redirect(url_for('auth'))
+        return redirect(url_for('authentication'))
     return render_template('profile.html', user=session.get('username'))
 
 
