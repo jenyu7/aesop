@@ -1,20 +1,20 @@
-yuJ -- 2017-10-22 20:00
+jenY -- 2017-10-22 20:00
 Added design doc and devlog to root of repo
 
-roktimA, wengC, yuJ -- 2017-10-22 23:24
+arifR, charlesW, jenY -- 2017-10-22 23:24
 Worked on design doc
 
-roktimA -- 2017-10-23 10:33
+arifR -- 2017-10-23 10:33
 Started login system
 
-roktimA -- 2017-10-23 14:04
+arifR -- 2017-10-23 14:04
 Worked on login system
 
-lauS, wengC -- 2017-10-23 21:26
+shannonL, charlesW -- 2017-10-23 21:26
 Updated database schema with new tables: users, history, and <STORY ID>
 
-roktimA -- 2017-10-23 22:35
+arifR -- 2017-10-23 22:35
 Combined login and signup pages
 
-wengC -- 2017-10-22 22:00
+charlesW -- 2017-10-22 22:00
 finished version 1 of database
