@@ -35,7 +35,7 @@ def getUsers():
 
 # returns a dictionary for story names {sID: name}
 def getStories():
-    a = 'SELECT sID, name FROM stories
+    a = 'SELECT sID, name FROM stories'
     x = c.execute(a)
     stories = {}
     # sID is stored as TEXT so delete int cast if it happens to be an issue
