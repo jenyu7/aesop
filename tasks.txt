@@ -10,3 +10,8 @@ Adding onto a story - Jen
 Creation of new story - Shannon
   - adding onto database of all stories
   - add to history table
+
+
+Already Done:
+- Login System
+- All tables in database
