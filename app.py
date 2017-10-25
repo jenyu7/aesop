@@ -34,6 +34,15 @@ def profile():
         return redirect(url_for('authentication'))
     return render_template('profile.html', user=session.get('username'))
 
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    if not session.get('username'):
+        flash("Not logged in")
+    else:
+        flash("Logged out")
+        session.pop('username')
+    return redirect(url_for('authentication'))
+
 
 if __name__ == "__main__":
     app.debug = True
