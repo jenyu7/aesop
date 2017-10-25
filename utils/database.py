@@ -5,7 +5,7 @@ import sqlite3
 
 
 # initialize database
-db = sqlite3.connect("aesop.db")
+db = sqlite3.connect("../data/aesop.db")
 c = db.cursor()
 
 # execute this file to create the initial database
