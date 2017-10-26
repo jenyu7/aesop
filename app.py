@@ -1,7 +1,7 @@
 import sqlite3
 import os
 from flask import Flask, render_template, redirect, url_for, request, session, flash
-from utils import auth
+from utils import auth, edit
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -43,6 +43,15 @@ def logout():
         session.pop('username')
     return redirect(url_for('authentication'))
 
+@app.route('/add_story', methods=['GET', 'POST'])
+def add_story():
+     if not session.get('username'):
+         flash("You must log in to add on to the story!")
+         return redirect(url_for('authentication'));
+     else:
+         content = request.form.get("content")
+         edit.add(content);
+     return render_template('add.html')
 
 if __name__ == "__main__":
     app.debug = True
