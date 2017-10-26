@@ -14,3 +14,5 @@ After doing so, you can run the application by `cd`ing into the repo and running
 $ cd aesop
 $ python app.py
 ```
+
+You can view the webpage by opening the url `localhost:5000` in a web browser.
