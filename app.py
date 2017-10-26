@@ -49,7 +49,7 @@ def logout():
         session.pop('username')
     return redirect(url_for('authentication'))
 
-# Create a story or add to an existing story - Should they be separate forms?
+# Add to an existing story
 @app.route('/add_story', methods=['GET', 'POST'])
 def add_story():
     if not session.get('username'):
@@ -60,6 +60,18 @@ def add_story():
         return edit.add(content)
     else:
         return render_template("add.html")
+
+# Create a new story
+@app.route('/create_story', methods=['GET', 'POST'])
+def create_story():
+    if not session.get('username'):
+        flash("You must log in to create a story!")
+        return redirect(url_for('authentication'))
+    elif request.form.get("create"):
+        title = request.form.get("title")
+        content = request.form.get("content")
+        return edit.create(title,content)
+    return render_template("create_story.html")
 
 # Show the stories you've edited
 @app.route ('/edited_stories')

@@ -19,8 +19,20 @@ Combined login and signup pages
 charlesW -- 2017-10-22 22:00
 finished version 1 of database
 
+jenY -- 2017-10-25 11:05
+began work on add function
+created add.html file
+
 arifR -- 2017-10-25 20:51
 Finish registration
 
 arifR -- 2017-10-26 12:58
 Add things to README.md
+
+jenY -- 2017-10-26 13:06
+add fxn renders correct webpage
+(commit thru slau's account)
+
+
+
+
