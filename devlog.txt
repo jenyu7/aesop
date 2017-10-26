@@ -21,3 +21,6 @@ finished version 1 of database
 
 arifR -- 2017-10-25 20:51
 Finish registration
+
+arifR -- 2017-10-26 12:58
+Add things to README.md
