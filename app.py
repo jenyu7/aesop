@@ -28,7 +28,7 @@ def root():
     return redirect('base')
 
 @app.route('/base')
-def homepage():
+def base():
     return render_template('base.html')
 
 # Profile page - shows profile stats and (if time, allow them to change password)
@@ -62,7 +62,7 @@ def add_story():
         return render_template("add.html")
 
 # Show the stories you've edited
-@app.route ('/editedStories')
+@app.route ('/edited_stories')
 def edited_stories():
     if not session.get('username'):
         flash("You must log in to view your stories!")
