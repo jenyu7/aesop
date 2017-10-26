@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+    {% block head %}
+    <head>
+        <title>
+            {% block title %} {{title}} {% endblock title %}-|- &nbsp Aesop's Fables
+        </title>
+    </head>
+    {% endblock head %}
+    {% block body %}
+    <body>
+        {# Display flashed messages #}
+        {% set messages = get_flashed_messages() %}
+        {% for msg in messages %}
+        <h1>{{msg}}</h1>
+        {% endfor %}
+
+        {% block content %}
+	<p style="text-align:center;">
+        <h1>My Stories<br> <br></h1> <h3>OUR COLLABORATIVE STORYTELLING WEBSITE<br><br>
+	<br></h3><br>
+	A<br>
+	B<br>
+	<!-- For each story, display last entry and a button that says "See story progress"; start from the most recent and go to the rest-->
+        <br>
+	<a href='/base'>Edit another story</a><br> <!--Redirect to home page(base.html)-->
+	<a href='/~~~'>Create new story</a><br> <!--Redirect to add entry form-->
+	
+        {{ content }}
+        {% endblock content %}
+	</p>
+    </body>
+    {% endblock body %}
