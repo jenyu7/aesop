@@ -80,8 +80,6 @@ def create_story():
     else:
         return render_template("create.html")
 
-
-
 # Show the stories you've edited
 @app.route ('/edited_stories')
 def edited_stories():
@@ -89,7 +87,7 @@ def edited_stories():
         flash("You must log in to view your stories!")
         return redirect(url_for('authentication'));
     else:
-        return render_template('add.html')
+        return render_template('edited_stories.html')
 
 
 if __name__ == "__main__":
