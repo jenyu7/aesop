@@ -22,7 +22,16 @@ def signup():
     '''
     Signs user up for the website.
     '''
-    return "CANNOT BE DONE UNTIL DATABASES ARE DONE<br>HARD CODED USERNAME AND PASSWORD IS 'elmo' and 'goldfish'"
+    users = database.getUsers()
+    # if username already taken, redirect to auth page
+    if request.form.get('username') in users:
+        flash("Username already taken")
+    elif request.form.get('password0') != request.form.get('password1'):
+        flash("Passwords do not match")
+    else:
+        flash("User added")
+        database.addUser(request.form.get('username'), request.form.get('password0'))
+    return redirect(url_for('authentication'))
 
 if __name__ == '__main__':
     database.addUser("elmo", "goldfish")

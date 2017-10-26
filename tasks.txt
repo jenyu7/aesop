@@ -1,7 +1,6 @@
 Current Tasks: 
 
 Login database - Charles
-Logout button - Arif
 Improve the crappy current base template and include a dope navbar - Samantha
 Create basic form for adding and creation - Samantha
 Adding onto a story - Jen
