@@ -84,18 +84,14 @@ def getHistory():
     return history
 
 
-# helper to insert a list of values into the table
+# helper to for insert statement
 def insert(table, vals):
-    # initialize database
-    db = sqlite3.connect("data/aesop.db")
-    c = db.cursor()
     x = "INSERT INTO " + table + " VALUES ("
     # add in the values into command
     for a in vals:
         x += "'" + a + "', "
     # get rid of last comma
     x = x[:len(x) - 2]
-    db.close()
     return x + ")"
 
 
