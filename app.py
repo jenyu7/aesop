@@ -6,6 +6,7 @@ from utils import auth, edit
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
+
 # Login Authentication
 @app.route('/auth', methods=['GET', 'POST'])
 def authentication():
@@ -22,14 +23,17 @@ def authentication():
     else:
         return render_template('auth.html')
 
+
 # Homepage after user has logged in - *shows list of stories they can edit
 @app.route('/')
 def root():
     return redirect('base')
 
+
 @app.route('/base')
 def homepage():
     return render_template('base.html')
+
 
 # Profile page - shows profile stats and (if time, allow them to change password)
 @app.route('/profile', methods=['GET', 'POST'])
@@ -39,11 +43,8 @@ def profile():
         return redirect(url_for('authentication'))
     return render_template('profile.html', user=session.get('username'))
 
-<<<<<<< HEAD
 
-=======
 # Logged Out Page
->>>>>>> 550c219ec192eea236d29ae3a0c9a25ff2773ea8
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     if not session.get('username'):
@@ -53,11 +54,8 @@ def logout():
         session.pop('username')
     return redirect(url_for('authentication'))
 
-<<<<<<< HEAD
 
-=======
 # Create a story or add to an existing story - Should they be separate forms?
->>>>>>> 550c219ec192eea236d29ae3a0c9a25ff2773ea8
 @app.route('/add_story', methods=['GET', 'POST'])
 def add_story():
     if not session.get('username'):
@@ -69,8 +67,7 @@ def add_story():
     else:
         return render_template("add.html")
 
-<<<<<<< HEAD
-=======
+
 # Show the stories you've edited
 @app.route ('/editedStories')
 def edited_stories():
@@ -79,7 +76,7 @@ def edited_stories():
         return redirect(url_for('authentication'));
     else:
         return render_template('add.html')
->>>>>>> 550c219ec192eea236d29ae3a0c9a25ff2773ea8
+
 
 if __name__ == "__main__":
     app.debug = True
