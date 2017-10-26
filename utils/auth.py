@@ -1,15 +1,14 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash
-
-# hard coded user info for now
-USERS = ['bob', 'elmo']
-PASSWORDS = ['bobbins', 'goldfish']
+import database
 
 def login():
     '''
     Logs user in.
     '''
-    if request.form.get('username') in USERS:
-        if request.form.get('password') == PASSWORDS[USERS.index(request.form.get('username'))]:
+    users = database.getUsers()
+    print users
+    if request.form.get('username') in users:
+        if request.form.get('password') == users[request.form.get('username')]:
             session['username'] = request.form.get('username')
             return redirect(url_for('profile'))
         else:
@@ -22,6 +21,9 @@ def login():
 def signup():
     '''
     Signs user up for the website.
-    CANNOT BE DONE UNTIL DATABASES ARE DONE
     '''
     return "CANNOT BE DONE UNTIL DATABASES ARE DONE<br>HARD CODED USERNAME AND PASSWORD IS 'elmo' and 'goldfish'"
+
+if __name__ == '__main__':
+    database.addUser("elmo", "goldfish")
+    print database.getUsers()
