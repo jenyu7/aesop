@@ -114,4 +114,5 @@ def new_sID():
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
     max_id = c.execute("SELECT MAX(sID) FROM stories")
-    return int(max_id) + 1
+    print max_id
+    # return int(max_id[0][0]) + 1

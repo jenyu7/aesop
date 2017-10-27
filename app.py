@@ -11,7 +11,7 @@ app.secret_key = os.urandom(32)
 def authentication():
     # if user already logged in, redirect to homepage(base.html)
     if session.get('username'):
-        return redirect(url_for('base'))
+        return redirect('base')
     # user entered login form
     elif request.form.get('login'):
         return auth.login()
