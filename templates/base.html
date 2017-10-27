@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
-    {% block head %}
+  {% block head %}
     <head>
-        <title>
-            {% block title %} {{title}} {% endblock title %}-|- &nbsp Aesop's Fables
-        </title>
+      <title>
+        {% block title %} {{title}} {% endblock title %}-|- &nbsp Aesop's Fables
+      </title>
     </head>
-    {% endblock head %}
-    {% block body %}
+  {% endblock head %}
+  {% block body %}
     <body>
-        {# Display flashed messages #}
-        {% set messages = get_flashed_messages() %}
-        {% for msg in messages %}
+      {# Display flashed messages #}
+      {% set messages = get_flashed_messages() %}
+
+      {% for msg in messages %}
         <h1>{{msg}}</h1>
-        {% endfor %}
+      {% endfor %}
 
-        {% block content %}
-	<p style="text-align:center;">
-        <h1>Welcome to Aesop's Fables!<br> <br></h1> <h3>OUR COLLABORATIVE STORYTELLING WEBSITE<br><br>
-	<a href='/edited_stories'>My Stories</a><br>
-	<br>Story Board</h3><br>
-        <br>
-        <!-- For each story, print the story and then add a button afterwards with the name=story id so that you know which story is being edited. Each story will have its own button.-->
-	<a href='/auth'>Let's get started!</a><br>
+      {% block content %}
+  	    <p style="text-align:center;">
+          <h1>Welcome to Aesop's Fables!</h1><br> <br>
+          <h3>OUR COLLABORATIVE STORYTELLING WEBSITE</h3><br><br>
 
-        {{ stories }}
-        {% endblock content %}
-	</p>
+        	<a href='/edited_stories'>My Stories</a><br>
+        	<br>Story Board<br><br>
+          <!-- For each story, print the story and then add a button afterwards with the name=story id so that you know which story is being edited. Each story will have its own button.-->
+        	<a href='/auth'>Let's get started!</a><br>
+          {{ stories }}
+      </p>
+      {% endblock content %}
     </body>
-    {% endblock body %}
+  {% endblock body %}
 </html>
