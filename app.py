@@ -1,4 +1,3 @@
-import sqlite3
 import os
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from utils import auth, edit
@@ -67,8 +66,9 @@ def add_story():
     else:
         return render_template("add.html")
 
+
 # Create new story
-@app.route('/create_story', methods=['GET','POST'])
+@app.route('/create_story', methods=['GET', 'POST'])
 def create_story():
     if not session.get('username'):
         flash("You must log in to create a new story!")
@@ -76,16 +76,17 @@ def create_story():
     elif request.form.get("create"):
         title = request.form.get("title")
         content = request.form.get("content")
-        return edit.create(title,content)
+        return edit.create(title, content)
     else:
         return render_template("create.html")
 
+
 # Show the stories you've edited
-@app.route ('/edited_stories')
+@app.route('/edited_stories')
 def edited_stories():
     if not session.get('username'):
         flash("You must log in to view your stories!")
-        return redirect(url_for('authentication'));
+        return redirect(url_for('authentication'))
     else:
         return render_template('edited_stories.html')
 
