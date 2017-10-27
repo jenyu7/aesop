@@ -41,3 +41,10 @@ Fixed bug in login
 
 wengC -- 2017-10-26 23:49
 updated readme and database to match schema
+
+shannonL -- 2017-10-27 10:59
+fixed base.html, removed /auth link
+
+shannonL -- 2017-10-27 13:19
+added new_sID generator in database.py
+added new story functionality

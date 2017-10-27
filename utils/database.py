@@ -81,7 +81,7 @@ def addUser(user, password):
 def create(sID, name, update):
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
-    vals = [sID, name, update, update]
+    vals = [str(sID), name, update, update]
     c.execute(insert("stories", vals))
     db.commit()
     db.close()
@@ -102,9 +102,16 @@ def addUpdate(sID, user, entry):
     vals = [str(sID), user, entry]
     c.execute(insert("history", vals))
     # update the story
-    story = getStory()
+    story = getStory(sID)
     story[2].append(entry)
     story[3] = entry
     c.execute(update(story))
     db.commit()
     db.close()
+
+# generates new_sID
+def new_sID():
+    db = sqlite3.connect("data/aesop.db")
+    c = db.cursor()
+    max_id = c.execute("SELECT MAX(sID) FROM stories")
+    return int(max_id) + 1
