@@ -12,21 +12,16 @@ if __name__ == '__main__':
     # table for user login
     c.execute("CREATE TABLE users (user TEXT, pass TEXT, PRIMARY KEY(user))")
     # table for story ID storage; id is text because it's user created
-    c.execute("CREATE TABLE stories (sID TEXT, name TEXT, PRIMARY KEY(sID))")
+    c.execute("CREATE TABLE stories (sID TEXT, name TEXT, full TEXT, last TEXT, PRIMARY KEY(sID))")
     # table for update history for all stories
     c.execute("CREATE TABLE history (sID TEXT, user TEXT, entry TEXT, PRIMARY KEY(sID, user))")
     # save and close database
     db.commit()
     db.close()
 
-# tracks if the seperate story databases need
-# initialized as false since you can only change the data with this module
-story_update = False
-
 
 # returns a dictionary for user data {user: pass}
 def getUsers():
-    # initialize database
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
     a = 'SELECT user, pass FROM users'
@@ -38,41 +33,18 @@ def getUsers():
     return users
 
 
-# returns a dictionary for story names {sID: name}
-def getStories():
-    # initialize database
-    db = sqlite3.connect("data/aesop.db")
-    c = db.cursor()
-    a = 'SELECT sID, name FROM stories'
-    x = c.execute(a)
-    stories = {}
-    # sID is stored as TEXT so delete int cast if it happens to be an issue
-    #   also add in a str cast around sID in getStory() and update despcription
-    for line in x:
-        stories[int(line[0])] = line[1]
-    db.close()
-    return stories
-
-
-# returns a list of lists (in order) for story entries [[user, entry],...]
+# returns a list for said story [name of story, full story, last update]
 def getStory(sID):
-    # initialize database
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
-    name = getStories()[sID]
-    a = 'SELECT user, entry FROM ' + name
-    x = c.execute(a)
-    story = []
-    for line in x:
-        story.append([line[0], line[1]])
-    db.close()
-    return story
+    a = 'SELECT name, full, last FROM stories WHERE sID = ' + str(sID)
+    x = c.execute(a)[0]
+    return [x[0], x[1], x[2]]
 
 
 # returns a list of lists for all story histories [[sID, user, entry],...]
 # not sure how else to return rows of 3 values
 def getHistory():
-    # initialize database
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
     a = 'SELECT sID, user, entry FROM history'
@@ -84,7 +56,7 @@ def getHistory():
     return history
 
 
-# helper to for insert statement
+# helper to make insert statement
 def insert(table, vals):
     x = "INSERT INTO " + table + " VALUES ("
     # add in the values into command
@@ -95,19 +67,8 @@ def insert(table, vals):
     return x + ")"
 
 
-# create a table for that story
-def create(story):
-    # initialize database
-    db = sqlite3.connect("data/aesop.db")
-    c = db.cursor()
-    c.execute("CREATE TABLE " + story + " (user TEXT, entry TEXT, PRIMARY KEY (user))")
-    db.commit()
-    db.close()
-
-
 # add the login to the database
 def addUser(user, password):
-    # initialize database
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
     vals = [user, password]
@@ -116,26 +77,34 @@ def addUser(user, password):
     db.close()
 
 
-# creates and adds the story to the database
-def addStory(sID, story):
-    # initialize database
+# adds a row to stories with these starting values
+def create(sID, name, update):
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
-    create(story)
-    vals = [str(sID), story]
+    vals = [sID, name, update, update]
     c.execute(insert("stories", vals))
     db.commit()
     db.close()
 
 
+# helper to make update statement for story
+def update(vals):
+    x = "UPDATE stories SET full = '" + vals[2] + "' && last = '" + vals[3] + "' "
+    x += "WHERE sID = '" + str(vals[0]) + "'"
+    return x
+
+
+# adds the update to database (history and stories)
 def addUpdate(sID, user, entry):
-    # initialize database
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
+    # add the entry into history
     vals = [str(sID), user, entry]
     c.execute(insert("history", vals))
-    story = getUsers()[str(sID)]
-    vals.pop(str(sID))
-    c.execute(insert(story, vals))
+    # update the story
+    story = getStory()
+    story[2].append(entry)
+    story[3] = entry
+    c.execute(update(story))
     db.commit()
     db.close()
