@@ -34,4 +34,7 @@ add fxn renders correct webpage
 (commit thru slau's account)
 
 shannonL -- 2017-10-26 18:45
-Added create feature on app.py 
+Added create feature on app.py
+
+shannonL -- 2017-10-26 21:40
+Fixed bug in login

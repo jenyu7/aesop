@@ -10,7 +10,7 @@ def login():
     if request.form.get('username') in users:
         if request.form.get('password') == users[request.form.get('username')]:
             session['username'] = request.form.get('username')
-            return redirect(url_for('base'))
+            return redirect('base')
         else:
             flash("Bad password")
             return redirect(url_for('authentication'))
