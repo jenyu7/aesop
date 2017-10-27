@@ -38,3 +38,6 @@ Added create feature on app.py
 
 shannonL -- 2017-10-26 21:40
 Fixed bug in login
+
+wengC -- 2017-10-26 23:49
+updated readme and database to match schema
