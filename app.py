@@ -42,7 +42,22 @@ def root():
 
 @app.route('/base')
 def homepage():
-    return render_template('base.html')
+    # print database.getStory(0)
+    # Dictionary for stories in the form of Title: [id, content]
+    stories = {}
+    L = [-1, ""]
+    # While there is still another story in the story database, display it
+    story_id = 0
+    while story_id >= 0:
+        try:
+            info = database.getStory(story_id)
+            stories[info[1]] = [story_id, info[3]]
+            story_id += 1
+        except:
+            print "No more stories in database."
+            break;
+    print stories
+    return render_template('base.html', stories=stories )
 
 
 # Profile page - shows profile stats and (if time, allow them to change password)
@@ -113,7 +128,6 @@ def edited_stories():
         return redirect(url_for('authentication'))
     else:
         return render_template('edited_stories.html')
-
 
 if __name__ == "__main__":
     app.debug = True
