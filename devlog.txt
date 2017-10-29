@@ -48,3 +48,13 @@ fixed base.html, removed /auth link
 shannonL -- 2017-10-27 13:19
 added new_sID generator in database.py
 added new story functionality
+
+jenY -- 2017-10-29 11:30
+organized functions in database.py for better readability
+
+jenY -- 2017-10-29 14:00
+fixed database.py functions for addUpdate
+  - cursor objects cannot take an index
+  - strings do not have a .append() method
+  - the fetchone() method used for dealing with array of tuple from execute statement
+ added a dummy story with id 0
