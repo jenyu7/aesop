@@ -20,22 +20,6 @@ if __name__ == '__main__':
     db.commit()
     db.close()
 
-    
-
-#-----HELPER FUNCTIONS-----
-
-# helper to make insert statement
-def insert(table, vals):
-    '''
-    x = "INSERT INTO " + table + " VALUES ("
-    # add in the values into command
-    for a in vals:
-        x += "'" + a + "', "
-    # get rid of last comma
-    x = x[:len(x) - 2]
-    '''
-    return x# + ")"
-
 #---------------------------
 
     
@@ -84,12 +68,6 @@ def create(sID, name, update):
     c.execute("INSERT INTO stories VALUES(?, ?, ?, ?)", vals)
     db.commit()
     db.close()
-
-# helper to make update statement for story
-def update(vals):
-    x = "UPDATE stories SET full = '" + vals[2] + "', last = '" + vals[3] + "' "
-    x += "WHERE sID = '" + str(vals[0]) + "'"
-    return x
 
 # adds the update to database (history and stories)
 def addUpdate(sID, user, entry):

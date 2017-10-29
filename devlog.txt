@@ -65,4 +65,6 @@ updates a story successfully
   - rewrites latest update
   - maintains sID and title
 
-
+jenY -- 2017-10-29 15:01
+fixed up all insert statements & deleted helpers
+  - errors because of concatenation
