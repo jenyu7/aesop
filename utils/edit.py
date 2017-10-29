@@ -15,3 +15,15 @@ def add(user, content):
 # creates story id from max_id + 1
 def create_id():
     pass
+
+#checks if user has already edited story
+def verify(id):
+    user = session.get('username')
+    history =  database.getHistory(id)
+    try:
+        if history.index(user) >= 0:
+            print "contributed"
+            return False
+    except:
+        print "nada"
+        return True
