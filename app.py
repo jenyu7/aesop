@@ -85,7 +85,6 @@ def add_story():
         print id
         print "-------------\n\n"
         if edit.verify(id):
-            print "render add"
             return render_template("add.html")
         else:
             flash("You have already contributed to this story.")
@@ -102,8 +101,6 @@ def create_story():
         title = request.form.get("title")
         content = request.form.get("content")
         return edit.create(title, content)
-    elif request.form.get("cancel"):
-        return redirect('base')
     else:
         return render_template("create.html")
 

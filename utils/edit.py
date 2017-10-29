@@ -22,8 +22,6 @@ def verify(id):
     history =  database.getHistory(id)
     try:
         if history.index(user) >= 0:
-            print "contributed"
             return False
     except:
-        print "nada"
         return True
