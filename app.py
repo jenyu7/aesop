@@ -8,7 +8,7 @@ app.secret_key = os.urandom(32)
 
 
 # Login Authentication
-@app.route('/auth', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def authentication():
     # if user already logged in, redirect to homepage(base.html)
     if session.get('username'):
@@ -16,12 +16,19 @@ def authentication():
     # user entered login form
     elif request.form.get('login'):
         return auth.login()
-    # user entered signup form
-    elif request.form.get('signup'):
-        return auth.signup()
     # user didn't enter form
     else:
-        return render_template('auth.html')
+        return render_template('login.html')
+
+@app.route('/signup', methods = ['GET', 'POST'])
+def crt_acct():
+    if session.get('username'):
+        return redirect('base')
+     # user entered signup form
+    elif request.form.get('signup'):
+        return auth.signup()
+    else:
+        return render_template('signup.html')
 
 
 # Homepage after user has logged in - *shows list of stories they can edit

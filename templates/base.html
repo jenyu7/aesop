@@ -30,12 +30,12 @@
   <nav class="navbar navbar-inverse" style="background-color:#a52b09;">
     <div class="container-fluid">
       <div class="navbar-header">
-	<a class="navbar-brand" href="/base">Aesop</a>
-	<img src = "static/book2.png">
+	<a class="navbar-brand" href="/base">AESOP</a>
+	<img src = "static/book.png">
       </div>
       <ul class="nav navbar-nav navbar-right">
-	<li><a href="/auth"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-	<li><a href="/auth"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+	<li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	<li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
       </ul>
     </div>
   </nav>
@@ -52,16 +52,17 @@
       {% endfor %}
 
         {% block content %}
-	<p style="text-align:center;">
-        <h1>Welcome to Aesop's Fables!<br> <br></h1> <h3>OUR COLLABORATIVE STORYTELLING WEBSITE<br><br>
-	<a href='/edited_stories'>My Stories</a><br>
-	<br>Story Board</h3><br>
+	<center>
+          <h1><b>AESOP</b></h1>
+	  <h3>A COLLABORATIVE STORYTELLING WEBSITE</h3><br><br>
+	  <h3><a href='/edited_stories'>My Stories</a></h3><br><br>
+	  <h3>Story Board</h3><br>
         <br>
         <!-- For each story, print the story and then add a button afterwards with the name=story id so that you know which story is being edited. Each story will have its own button.-->
 	<!--<a href='/auth'>Let's get started!</a><br>-->
   
           {{ stories }}
-      </p>
+	</center>
       {% endblock content %}
     </body>
   {% endblock body %}
