@@ -55,6 +55,8 @@
         {% block content %}
 	<center>
           <h1><b>AESOP</b></h1>
+	  <h3>A COLLABORATIVE STORYTELLING WEBSITE</h3><br><br>
+	  <!-- IF THE USER IS NOT LOGGED IN, THEN IT SHOULD REROUTE THEM TO THE LOGIN PAGE*****************************-->
 	  <h3>A COLLABORATIVE STORYTELLING WEBSITE</h3>
 	  <img src = "static/bear.jpg"><br><br>
 	  <h3><a href='/edited_stories'>My Stories</a></h3><br><br>
@@ -62,12 +64,11 @@
         <br>
         <!-- For each story, print the story and then add a button afterwards with the name=story id so that you know which story is being edited. Each story will have its own button.-->
 	<!--<a href='/auth'>Let's get started!</a><br>-->
-<<<<<<< HEAD
 	<!--hardcode-->
 	<a href = "/add_story?id=0">Story 0</a><br>
           {{ stories }}
 	</center>
-=======
+	
 	{% for story in stories %}
 	<p><h2> Title: {{ story_title }} <br></h2>
 	   <h3>  Last Entry:<br>
@@ -75,8 +76,8 @@
 	     <br><br><br>
 	</p>
 	{% endfor %}
-	</p>
->>>>>>> bb36131bf0c195f71c96dc3589b65d1b8b7f4e29
+        </p>
+
       {% endblock content %}
     </body>
   {% endblock body %}

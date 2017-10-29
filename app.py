@@ -85,11 +85,11 @@ def add_story():
         print id
         print "-------------\n\n"
         if edit.verify(id):
+            print "render add"
             return render_template("add.html")
         else:
             flash("You have already contributed to this story.")
             return redirect(url_for('profile'))
-
 
 # Create new story
 @app.route('/create_story', methods=['GET', 'POST'])
