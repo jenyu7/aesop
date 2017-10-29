@@ -102,6 +102,8 @@ def create_story():
         title = request.form.get("title")
         content = request.form.get("content")
         return edit.create(title, content)
+    elif request.form.get("cancel"):
+        return redirect('base')
     else:
         return render_template("create.html")
 
