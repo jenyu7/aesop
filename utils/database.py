@@ -96,16 +96,14 @@ def getStory(sID):
     return [v[0], v[1], v[2], v[3]]
 
 
-# returns a list of lists for all story histories [[sID, user, entry],...]
-# not sure how else to return rows of 3 values
-def getHistory():
+# returns users which have edited a certain story
+def getHistory(story_id):
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
-    a = 'SELECT sID, user, entry FROM history'
-    x = c.execute(a)
-    history = []
+    x = c.execute('SELECT user FROM history WHERE sID = ?', [story_id])
+    users = []
     for line in x:
-        history.append([line[0], line[1], line[2]])
+        users.append(line[0])
     db.close()
-    return history
+    return users
 

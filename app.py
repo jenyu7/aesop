@@ -15,6 +15,7 @@ def authentication():
         return redirect('base')
     # user entered login form
     elif request.form.get('login'):
+        print "login"
         return auth.login()
     # user didn't enter form
     else:
@@ -79,7 +80,16 @@ def add_story():
         content = request.form.get("content")
         return edit.add(user, content)
     else:
-        return render_template("add.html")
+        id = request.args.get("id")
+        print "-------------\n\n"
+        print id
+        print "-------------\n\n"
+        if edit.verify(id):
+            print "render add"
+            return render_template("add.html")
+        else:
+            flash("You have already contributed to this story.")
+            return redirect(url_for('profile'))
 
 
 # Create new story

@@ -10,7 +10,7 @@ def login():
     if request.form.get('username') in users:
         if request.form.get('password') == users[request.form.get('username')]:
             session['username'] = request.form.get('username')
-            return redirect('base')
+            return redirect(url_for('profile'))
         else:
             flash("Bad password")
             return redirect(url_for('authentication'))
@@ -29,7 +29,7 @@ def signup():
     elif request.form.get('password0') != request.form.get('password1'):
         flash("Passwords do not match")
     else:
-        flash("User added")
+        flash("Please log in with your new credentials!")
         database.addUser(request.form.get('username'), request.form.get('password0'))
     return redirect(url_for('authentication'))
 

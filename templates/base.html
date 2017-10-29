@@ -43,24 +43,27 @@
     
     
   {% block body %}
-    <body>
+  <body>
+    <center>
       {# Display flashed messages #}
       {% set messages = get_flashed_messages() %}
 
       {% for msg in messages %}
-        <h1>{{msg}}</h1>
+      <h1>{{msg}}</h1>
       {% endfor %}
-
+    </center>
         {% block content %}
 	<center>
           <h1><b>AESOP</b></h1>
-	  <h3>A COLLABORATIVE STORYTELLING WEBSITE</h3><br><br>
+	  <h3>A COLLABORATIVE STORYTELLING WEBSITE</h3>
+	  <img src = "static/bear.jpg"><br><br>
 	  <h3><a href='/edited_stories'>My Stories</a></h3><br><br>
 	  <h3>Story Board</h3><br>
         <br>
         <!-- For each story, print the story and then add a button afterwards with the name=story id so that you know which story is being edited. Each story will have its own button.-->
 	<!--<a href='/auth'>Let's get started!</a><br>-->
-  
+	<!--hardcode-->
+	<a href = "/add_story?id=0">Story 0</a><br>
           {{ stories }}
 	</center>
       {% endblock content %}
