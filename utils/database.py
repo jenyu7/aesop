@@ -81,8 +81,11 @@ def create(sID, name, update):
 
 # helper to make update statement for story
 def update(vals):
-    x = "UPDATE stories SET full = '" + vals[2] + "' && last = '" + vals[3] + "' "
+    x = "UPDATE stories SET full = '" + vals[1] + "', last = '" + vals[2] + "' "
     x += "WHERE sID = '" + str(vals[0]) + "'"
+    print "\n\n---------------------------------\n\n"
+    print x
+    print "\n\n---------------------------------\n\n"
     return x
 
 # adds the update to database (history and stories)
@@ -94,8 +97,8 @@ def addUpdate(sID, user, entry):
     c.execute(insert("history", vals))
     # update the story
     story = getStory(sID)
-    story[2].append(entry)
-    story[3] = entry
+    story[1] = story[1] + entry
+    story[2] = entry
     c.execute(update(story))
     db.commit()
     db.close()
@@ -108,11 +111,7 @@ def getStory(sID):
     c = db.cursor()
     a = 'SELECT name, full, last FROM stories WHERE sID = ' + str(sID)
     x = c.execute(a)
-    #x = x[0]
-    print "________________________\n\n"
-    print x.fetchall()[0]
-    print"\n\n________________________________\n\n"
-    v = x.fetchall()[0]
+    v = x.fetchone()
     return [v[0], v[1], v[2]]
 
 
