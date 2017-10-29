@@ -14,9 +14,13 @@ if __name__ == '__main__':
     c.execute("CREATE TABLE stories (sID TEXT, name TEXT, full TEXT, last TEXT, PRIMARY KEY(sID))")
     # table for update history for all stories
     c.execute("CREATE TABLE history (sID TEXT, user TEXT, entry TEXT, PRIMARY KEY(sID, user))")
+    #hardcode
+    c.execute("INSERT INTO stories VALUES(0, 'jen', 'hello there', 'there')")
     # save and close database
     db.commit()
     db.close()
+
+    
 
 #-----HELPER FUNCTIONS-----
 
