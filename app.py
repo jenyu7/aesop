@@ -52,7 +52,11 @@ def logout():
         flash("Logged out")
         session.pop('username')
     return redirect(url_for('authentication'))
-
+'''
+@app.route('/view_story')
+def view():
+    if request.args.get('sID')
+'''
 
 # Add to an existing story
 @app.route('/add_story', methods=['GET', 'POST'])
@@ -61,8 +65,9 @@ def add_story():
         flash("You must log in to add on to the story!")
         return redirect(url_for('authentication'))
     elif request.form.get("update"):
+        user = session.get('username')
         content = request.form.get("content")
-        return edit.add(content)
+        return edit.add(user, content)
     else:
         return render_template("add.html")
 

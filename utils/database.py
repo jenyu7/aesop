@@ -1,7 +1,6 @@
 import sqlite3
 
 # requested functions:
-#
 
 
 # execute this file to create the initial database
@@ -19,7 +18,23 @@ if __name__ == '__main__':
     db.commit()
     db.close()
 
+#-----HELPER FUNCTIONS-----
 
+# helper to make insert statement
+def insert(table, vals):
+    x = "INSERT INTO " + table + " VALUES ("
+    # add in the values into command
+    for a in vals:
+        x += "'" + a + "', "
+    # get rid of last comma
+    x = x[:len(x) - 2]
+    return x + ")"
+
+#---------------------------
+
+    
+#-----FUNCTIONS FOR LOGIN SYSTEM-----
+    
 # returns a dictionary for user data {user: pass}
 def getUsers():
     db = sqlite3.connect("data/aesop.db")
@@ -32,41 +47,6 @@ def getUsers():
     db.close()
     return users
 
-
-# returns a list for said story [name of story, full story, last update]
-def getStory(sID):
-    db = sqlite3.connect("data/aesop.db")
-    c = db.cursor()
-    a = 'SELECT name, full, last FROM stories WHERE sID = ' + str(sID)
-    x = c.execute(a)[0]
-    return [x[0], x[1], x[2]]
-
-
-# returns a list of lists for all story histories [[sID, user, entry],...]
-# not sure how else to return rows of 3 values
-def getHistory():
-    db = sqlite3.connect("data/aesop.db")
-    c = db.cursor()
-    a = 'SELECT sID, user, entry FROM history'
-    x = c.execute(a)
-    history = []
-    for line in x:
-        history.append([line[0], line[1], line[2]])
-    db.close()
-    return history
-
-
-# helper to make insert statement
-def insert(table, vals):
-    x = "INSERT INTO " + table + " VALUES ("
-    # add in the values into command
-    for a in vals:
-        x += "'" + a + "', "
-    # get rid of last comma
-    x = x[:len(x) - 2]
-    return x + ")"
-
-
 # add the login to the database
 def addUser(user, password):
     db = sqlite3.connect("data/aesop.db")
@@ -76,6 +56,19 @@ def addUser(user, password):
     db.commit()
     db.close()
 
+#------------------------------------
+
+#-----FUNCTIONS FOR STORY CREATE/ADD-----
+
+#---STORY CREATION---
+
+# generates a new id for the story (sID)
+def new_sID():
+    db = sqlite3.connect("data/aesop.db")
+    c = db.cursor()
+    max_id = c.execute("SELECT MAX(sID) FROM stories")
+    print max_id
+    # return int(max_id[0][0]) + 1
 
 # adds a row to stories with these starting values
 def create(sID, name, update):
@@ -86,13 +79,11 @@ def create(sID, name, update):
     db.commit()
     db.close()
 
-
 # helper to make update statement for story
 def update(vals):
     x = "UPDATE stories SET full = '" + vals[2] + "' && last = '" + vals[3] + "' "
     x += "WHERE sID = '" + str(vals[0]) + "'"
     return x
-
 
 # adds the update to database (history and stories)
 def addUpdate(sID, user, entry):
@@ -109,10 +100,32 @@ def addUpdate(sID, user, entry):
     db.commit()
     db.close()
 
-# generates new_sID
-def new_sID():
+#---------------------------------------
+
+# returns a list for said story [name of story, full story, last update]
+def getStory(sID):
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
-    max_id = c.execute("SELECT MAX(sID) FROM stories")
-    print max_id
-    # return int(max_id[0][0]) + 1
+    a = 'SELECT name, full, last FROM stories WHERE sID = ' + str(sID)
+    x = c.execute(a)
+    #x = x[0]
+    print "________________________\n\n"
+    print x.fetchall()[0]
+    print"\n\n________________________________\n\n"
+    v = x.fetchall()[0]
+    return [v[0], v[1], v[2]]
+
+
+# returns a list of lists for all story histories [[sID, user, entry],...]
+# not sure how else to return rows of 3 values
+def getHistory():
+    db = sqlite3.connect("data/aesop.db")
+    c = db.cursor()
+    a = 'SELECT sID, user, entry FROM history'
+    x = c.execute(a)
+    history = []
+    for line in x:
+        history.append([line[0], line[1], line[2]])
+    db.close()
+    return history
+

@@ -7,7 +7,8 @@ def create(title, content):
     flash("added " + str(title) + ": " + str(content))
     return redirect(url_for('profile'))
 
-def add(content):
+def add(user, content):
+    database.addUpdate(0, str(user), str(content))
     flash("added " + str(content) + "!!")
     return redirect(url_for('profile'))
 
