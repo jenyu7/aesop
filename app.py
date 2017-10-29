@@ -57,7 +57,7 @@ def homepage():
             print "No more stories in database."
             break;
     print stories
-    return render_template('base.html', stories=stories )
+    return render_template('base.html', stories=stories)
 
 
 # Profile page - shows profile stats and (if time, allow them to change password)
@@ -127,7 +127,28 @@ def edited_stories():
         flash("You must log in to view your stories!")
         return redirect(url_for('authentication'))
     else:
-        return render_template('edited_stories.html')
+        ids = database.getUserStories("jen")
+        print ids
+        # Dictionary for stories in the form of Title: id
+        stories = {}
+        # While there is still another story in the story database, display it
+        i = 0
+        while i < len(ids):
+                info = database.getStory(ids[i])
+                print "info: ", info
+                stories[info[1]] = ids[i]
+                i += 1
+        print stories
+        return render_template('edited_stories.html', stories=stories)
+
+# View each edited story in full
+@app.route('/view_story')
+def view_story():
+    if not session.get('username'):
+        flash("You must log in to view your stories!")
+        return redirect(url_for('authentication'))
+    else:
+        return "Popcorn"
 
 if __name__ == "__main__":
     app.debug = True

@@ -16,17 +16,27 @@
 
         {% block content %}
 	<p style="text-align:center;">
-        <h1>My Stories<br> <br></h1> <h3>OUR COLLABORATIVE STORYTELLING WEBSITE<br><br>
-	<br></h3><br>
-	A<br>
-	B<br>
+          <h1 style="text-align:center">My Stories</h1>
+
 	<!-- For each story, display last entry and a button that says "See story progress"; start from the most recent and go to the rest-->
         <br>
 	<a href='/base'>Edit another story</a><br> <!--Redirect to home page(base.html)-->
 	<a href='/create_story'>Create new story</a><br> <!--Redirect to add entry form-->
 
-        {{ content }}
+	{% for title in stories %}
+	<!-- Stories dictionary: {{stories}}-->
+	<p>
+	  <h3 style="text-align:left"> &nbsp Story#: <i> {{ stories[title] }} </i>
+	  <h2 style="text-align:left"> &nbsp Title: <i> {{ title }} </i><br></h2>	    <h4 style="text-align:left"><i> <a href="/view_story"> Read Full Story</i><br></h4>
+
+	    <br><br>
+	{% endfor %}
+        </p>
+
         {% endblock content %}
 	</p>
     </body>
     {% endblock body %}
+
+
+For all their edited stories, display the story id, title and a link <"Read Story"> that reroutes to a route that will render a view template with the full story and a back button.

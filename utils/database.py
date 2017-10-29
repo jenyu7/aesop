@@ -86,7 +86,7 @@ def addUpdate(sID, user, entry):
 
 #---------------------------------------
 
-# returns a list for said story [name of story, full story, last update]
+# returns a list for said story [story id, name of story, full story, last update]
 def getStory(sID):
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
@@ -106,4 +106,18 @@ def getHistory(story_id):
         users.append(line[0])
     db.close()
     return users
+
+# Given a username, return a list of all the story ids that the user has edited
+# SELECT sID from history WHERE user = <username>
+def getUserStories(username):
+    db = sqlite3.connect("data/aesop.db")
+    c = db.cursor()
+    a = 'SELECT sID FROM history WHERE user="' + username + '"'
+    print "a: " + a
+    x = c.execute(a)
+    stories = []
+    for line in x:
+        stories.append(line[0])
+    db.close()
+    return stories
 
