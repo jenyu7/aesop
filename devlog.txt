@@ -68,3 +68,7 @@ updates a story successfully
 jenY -- 2017-10-29 15:01
 fixed up all insert statements & deleted helpers
   - errors because of concatenation of sqlite3 commands
+
+jenY -- 2017-10-29 15:58
+added navbar at top of page
+fixed up templates
