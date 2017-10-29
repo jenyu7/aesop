@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from utils import auth, edit
 
+
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
