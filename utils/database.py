@@ -26,13 +26,15 @@ if __name__ == '__main__':
 
 # helper to make insert statement
 def insert(table, vals):
+    '''
     x = "INSERT INTO " + table + " VALUES ("
     # add in the values into command
     for a in vals:
         x += "'" + a + "', "
     # get rid of last comma
     x = x[:len(x) - 2]
-    return x + ")"
+    '''
+    return x# + ")"
 
 #---------------------------
 
@@ -56,7 +58,7 @@ def addUser(user, password):
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
     vals = [user, password]
-    c.execute(insert("users", vals))
+    c.execute("INSERT INTO users VALUES(?, ?)", vals)
     db.commit()
     db.close()
 
@@ -79,7 +81,7 @@ def create(sID, name, update):
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
     vals = [str(sID), name, update, update]
-    c.execute(insert("stories", vals))
+    c.execute("INSERT INTO stories VALUES(?, ?, ?, ?)", vals)
     db.commit()
     db.close()
 
@@ -87,11 +89,6 @@ def create(sID, name, update):
 def update(vals):
     x = "UPDATE stories SET full = '" + vals[2] + "', last = '" + vals[3] + "' "
     x += "WHERE sID = '" + str(vals[0]) + "'"
-    '''
-    print "\n\n---------------------------------\n\n"
-    print x
-    print "\n\n---------------------------------\n\n"
-    '''
     return x
 
 # adds the update to database (history and stories)
@@ -100,12 +97,12 @@ def addUpdate(sID, user, entry):
     c = db.cursor()
     # add the entry into history
     vals = [str(sID), user, entry]
-    c.execute(insert("history", vals))
+    c.execute("INSERT INTO history VALUES (?,?,?)", vals)
     # update the story
     story = getStory(sID)
     story[2] = story[2] + " " + entry
     story[3] = entry
-    c.execute(update(story))
+    c.execute("UPDATE stories SET full = ?, last = ? WHERE sID = ?", [story[2], story[3], story[0]])
     db.commit()
     db.close()
 
