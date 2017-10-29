@@ -58,3 +58,11 @@ fixed database.py functions for addUpdate
   - strings do not have a .append() method
   - the fetchone() method used for dealing with array of tuple from execute statement
  added a dummy story with id 0
+
+jenY -- 2017-10-29 14:19
+updates a story successfully
+  - augments current story
+  - rewrites latest update
+  - maintains sID and title
+
+
