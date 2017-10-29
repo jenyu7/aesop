@@ -60,9 +60,14 @@
         <br>
         <!-- For each story, print the story and then add a button afterwards with the name=story id so that you know which story is being edited. Each story will have its own button.-->
 	<!--<a href='/auth'>Let's get started!</a><br>-->
-  
-          {{ stories }}
-	</center>
+	{% for story in stories %}
+	<p><h2> Title: {{ story_title }} <br></h2>
+	   <h3>  Last Entry:<br>
+	     {{ last_entry }}
+	     <br><br><br>
+	</p>
+	{% endfor %}
+	</p>
       {% endblock content %}
     </body>
   {% endblock body %}
