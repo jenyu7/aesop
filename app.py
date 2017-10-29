@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, url_for, request, session, flash
-from utils import auth, edit
+from utils import auth, edit, database
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -26,6 +26,8 @@ def authentication():
 # Homepage after user has logged in - *shows list of stories they can edit
 @app.route('/')
 def root():
+    if not("elmo" in database.getUsers()):
+        database.addUser("elmo","goldfish")
     return redirect('base')
 
 
