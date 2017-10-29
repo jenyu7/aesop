@@ -85,11 +85,13 @@ def create(sID, name, update):
 
 # helper to make update statement for story
 def update(vals):
-    x = "UPDATE stories SET full = '" + vals[1] + "', last = '" + vals[2] + "' "
+    x = "UPDATE stories SET full = '" + vals[2] + "', last = '" + vals[3] + "' "
     x += "WHERE sID = '" + str(vals[0]) + "'"
+    '''
     print "\n\n---------------------------------\n\n"
     print x
     print "\n\n---------------------------------\n\n"
+    '''
     return x
 
 # adds the update to database (history and stories)
@@ -101,8 +103,8 @@ def addUpdate(sID, user, entry):
     c.execute(insert("history", vals))
     # update the story
     story = getStory(sID)
-    story[1] = story[1] + entry
-    story[2] = entry
+    story[2] = story[2] + " " + entry
+    story[3] = entry
     c.execute(update(story))
     db.commit()
     db.close()
@@ -113,10 +115,10 @@ def addUpdate(sID, user, entry):
 def getStory(sID):
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
-    a = 'SELECT name, full, last FROM stories WHERE sID = ' + str(sID)
+    a = 'SELECT sID, name, full, last FROM stories WHERE sID = ' + str(sID)
     x = c.execute(a)
     v = x.fetchone()
-    return [v[0], v[1], v[2]]
+    return [v[0], v[1], v[2], v[3]]
 
 
 # returns a list of lists for all story histories [[sID, user, entry],...]
