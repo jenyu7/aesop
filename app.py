@@ -91,7 +91,6 @@ def add_story():
             flash("You have already contributed to this story.")
             return redirect(url_for('profile'))
 
-
 # Create new story
 @app.route('/create_story', methods=['GET', 'POST'])
 def create_story():
@@ -102,8 +101,6 @@ def create_story():
         title = request.form.get("title")
         content = request.form.get("content")
         return edit.create(title, content)
-    elif request.form.get("cancel"):
-        return redirect('base')
     else:
         return render_template("create.html")
 
