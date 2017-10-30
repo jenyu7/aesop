@@ -19,8 +19,11 @@ In order to run the application you need to install flask. Preferably you should
 $ pip install virtualenv
 $ virtualenv <name>
 $ . <name>/bin/activate
-or for windows
-$ . <name>/script/activate
+```
+
+or for windows you activate it with:
+```
+$ . <name>/Script/activate
 ```
 
 You can then install flask by:
@@ -40,3 +43,8 @@ $ python app.py
 ```
 
 You can then view the webpage by opening the url `localhost:5000` in a web browser.
+
+If you want to restart the database, you delete the file (or move it to somewhere else to keep the old version) and run the following:
+
+```
+$ python utils/database.py
