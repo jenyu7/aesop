@@ -22,7 +22,7 @@ def authentication():
         return render_template('login.html')
 
 
-@app.route('/signup', methods = ['GET', 'POST'])
+@app.route('/signup', methods=['GET', 'POST'])
 def crt_acct():
     if session.get('username'):
         return redirect('base')

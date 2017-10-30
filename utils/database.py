@@ -14,16 +14,15 @@ if __name__ == '__main__':
     c.execute("CREATE TABLE stories (sID TEXT, name TEXT, full TEXT, last TEXT, PRIMARY KEY(sID))")
     # table for update history for all stories
     c.execute("CREATE TABLE history (sID TEXT, user TEXT, entry TEXT, PRIMARY KEY(sID, user))")
-    #hardcode
+    # hard coded starting story
     c.execute("INSERT INTO stories VALUES(0, 'jen', 'hello there', 'there')")
     # save and close database
     db.commit()
     db.close()
 
-#---------------------------
 
+# -----FUNCTIONS FOR LOGIN SYSTEM-----
 
-#-----FUNCTIONS FOR LOGIN SYSTEM-----
 
 # returns a dictionary for user data {user: pass}
 def getUsers():
@@ -37,6 +36,7 @@ def getUsers():
     db.close()
     return users
 
+
 # add the login to the database
 def addUser(user, password):
     db = sqlite3.connect("data/aesop.db")
@@ -46,11 +46,12 @@ def addUser(user, password):
     db.commit()
     db.close()
 
-#------------------------------------
+# --------------------------------------------------
 
-#-----FUNCTIONS FOR STORY CREATE/ADD-----
+# -----FUNCTIONS FOR STORY CREATE/ADDTIONS/ACCESSORS-----
 
-#---STORY CREATION---
+# ---STORY CREATION---
+
 
 # generates a new id for the story (sID)
 def new_sID():
@@ -61,6 +62,7 @@ def new_sID():
     for i in data:
         max_id = i[0]
     return int(max_id) + 1
+
 
 # adds a row to stories with these starting values
 def create(sID, title, content, user):
@@ -73,22 +75,23 @@ def create(sID, title, content, user):
     db.commit()
     db.close()
 
+
 # adds the update to database (history and stories)
 def addUpdate(sID, user, entry):
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
     # add the entry into history
-    vals = [str(sID), user, entry]
-    c.execute("INSERT INTO history VALUES (?,?,?)", vals)
+    vals0 = [str(sID), user, entry]
+    c.execute("INSERT INTO history VALUES (?,?,?)", vals0)
     # update the story
     story = getStory(sID)
     story[2] = story[2] + " " + entry
     story[3] = entry
-    c.execute("UPDATE stories SET full = ?, last = ? WHERE sID = ?", [story[2], story[3], story[0]])
+    vals1 = [story[2], story[3], story[0]]
+    c.execute("UPDATE stories SET full = ?, last = ? WHERE sID = ?", vals1)
     db.commit()
     db.close()
 
-#---------------------------------------
 
 # returns a list for said story [story id, name of story, full story, last update]
 def getStory(sID):
@@ -110,6 +113,7 @@ def getHistory(story_id):
         users.append(line[0])
     db.close()
     return users
+
 
 # Given a username, return a list of all the story ids that the user has edited
 # SELECT sID from history WHERE user = <username>
