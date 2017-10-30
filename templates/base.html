@@ -1,53 +1,57 @@
 <!DOCTYPE html>
 <html>
+
+<!-- base template -->
   {% block head %}
-  <head>
-    <title>
-      {% block title %} {{title}} {% endblock title %}-|- &nbsp Aesop's Fables
-    </title>
-    <link rel="icon" href="static/bear.png" type="image/png">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <style>
-      body 
-      {
-      font-family: "Montserrat", sans-serif;
-      }
-      
-      .btn-block 
-      {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      }
-    </style>
-  </head>
+    <head>
+      <title>
+        {% block title %} {{title}} {% endblock title %}-|- &nbsp Aesop's Fables
+      </title>
+
+      <link rel="icon" href="static/bear.png" type="image/png">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+      <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+      <style>
+        body
+          {
+            font-family: "Montserrat", sans-serif;
+          }
+
+        .btn-block
+          {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          }
+      </style>
+    </head>
   {% endblock head %}
 
+
   {% block navbar %}
-  <nav class="navbar navbar-inverse" style="background-color:#a52b09;">
-    <div class="container-fluid">
-      <div class="navbar-header">
-	<a class="navbar-brand" href="/base">AESOP</a>
-	<img src = "static/book.png">
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-	{% block icons %}
-             {% if loggedIn %}
-                 <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
-             {% else %}
-	         <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-	         <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-             {% endif %}
+    <nav class="navbar navbar-inverse" style="background-color:#a52b09;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+        	<a class="navbar-brand" href="/base">AESOP</a>
+        	<img src = "static/book.png">
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+      	{% block icons %}
+           {% if loggedIn %}
+             <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+           {% else %}
+             <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+             <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+           {% endif %}
         {% endblock icons %}
-      </ul>
-    </div>
-  </nav>
+        </ul>
+      </div>
+    </nav>
   {% endblock navbar %}
-    
-    
+
+
   {% block body %}
   <body>
     <center>
@@ -58,29 +62,32 @@
       <h1>{{msg}}</h1>
       {% endfor %}
     </center>
-        {% block content %}
-	<center>
-          <h1><b>AESOP</b></h1>
-	  <!-- IF THE USER IS NOT LOGGED IN, THEN IT SHOULD REROUTE THEM TO THE LOGIN PAGE*****************************-->
-	  <h3>A COLLABORATIVE STORYTELLING WEBSITE</h3>
-	  <img src = "static/bear.jpg"><br>
-	  <h3 style="padding:0"><a href='/profile'>My Profile</a>&nbsp&nbsp
-	  <a href='/edited_stories'>My Stories</a></h3><br>
-	  <h1 style="text-align:left">&nbsp Story Board</h1>
+    {% block content %}
+    	<center>
+        <h1><b>AESOP</b></h1>
+    	  <!-- IF THE USER IS NOT LOGGED IN, THEN IT SHOULD REROUTE THEM TO THE LOGIN PAGE*****************************-->
+    	  <h3>A COLLABORATIVE STORYTELLING WEBSITE</h3>
+    	  <img src = "static/bear.jpg"><br>
+    	  <h3 style="padding:0"><a href='/profile'>My Profile</a>&nbsp&nbsp
+    	  <a href='/edited_stories'>My Stories</a></h3><br>
+    	  <h1 style="text-align:left">&nbsp Story Board</h1>
         <br>
         <!-- For each story, print the story and then add a button afterwards with the name=story id so that you know which story is being edited. Each story will have its own button.-->
-	<!--<a href='/auth'>Let's get started!</a><br>-->
+      	<!--<a href='/auth'>Let's get started!</a><br>-->
 
-	{% for title in stories %}
-	<!-- Stories dictionary: {{stories}}-->
-	<p><h2 style="text-align:left"> &nbsp Title: <i> {{ title }} </i><br></h2>
-	  <h3 style="text-align:left"> &nbsp Last Entry:<br>
-	  <blockquote style="text-align:left" >
-	    <i> {{ stories[title][1] }} </i>
-	  </blockquote>
-	   <a href={{ stories[title][2]}}>&nbsp Edit This Story </a><br><br>
-	    <!-- Use request.args.get("id") to access the story's id-->
-	{% endfor %}
+        <p>
+      	{% for title in stories %}
+      	<!-- Stories dictionary: {{stories}}-->
+      	<h2 style="text-align:left"> &nbsp Title: <i> {{ title }} </i></h2><br>
+
+    	  <h3 style="text-align:left"> &nbsp Last Entry:<br>
+    	  <blockquote style="text-align:left" >
+    	    <i> {{ stories[title][1] }} </i>
+    	  </blockquote>
+
+    	  <a href={{ stories[title][2]}}>&nbsp Edit This Story </a><br><br>
+  	    <!-- Use request.args.get("id") to access the story's id-->
+      	{% endfor %}
         </p>
 
       {% endblock content %}

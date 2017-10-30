@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 
+<!-- loads a story as content -->
 {% block content %}
-<a href="/edited_stories">&nbsp Back to My Edited Stories </a><br>
+	<a href="/edited_stories">&nbsp Back to My Edited Stories </a><br>
 
-<h2 style="text-align:left"> &nbsp Story#: <i> {{ story_id }} </i><br></h2>
-<h2 style="text-align:left"> &nbsp Title: <i> {{ title }} </i><br><br></h2>
-	  <blockquote style="text-align:left" >
-	    <i> {{ full_story }} </i>
-	     <br><br>
-	  </blockquote>
+	<h2 style="text-align:left"> &nbsp Story#: <i> {{ story_id }} </i><br></h2>
+	<h2 style="text-align:left"> &nbsp Title: <i> {{ title }} </i><br><br></h2>
+  <blockquote style="text-align:left" >
+    <i> {{ full_story }} </i><br><br>
+  </blockquote>
 
 	<a href="/edited_stories"> &nbsp Back to My Edited Stories </a>
-
 {% endblock content %}
