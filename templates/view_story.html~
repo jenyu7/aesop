@@ -34,14 +34,8 @@
 	<img src = "static/book.png">
       </div>
       <ul class="nav navbar-nav navbar-right">
-	{% block icons %}
-             {% if loggedIn %}
-                 <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
-             {% else %}
-	         <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-	         <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-             {% endif %}
-        {% endblock icons %}
+	<li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	<li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
       </ul>
     </div>
   </nav>
@@ -77,9 +71,8 @@
 	  <h3 style="text-align:left"> &nbsp Last Entry:<br>
 	  <blockquote style="text-align:left" >
 	    <i> {{ stories[title][1] }} </i>
+	     <br><br>
 	  </blockquote>
-	   <a href={{ stories[title][2]}}>&nbsp Edit This Story </a><br><br>
-	    <!-- Use request.args.get("id") to access the story's id-->
 	{% endfor %}
         </p>
 

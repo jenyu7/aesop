@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-Welcome to your profile page, {{user}}!<br>
-<a href="/logout">Logout here!</a>
+<p>
+  <h3 style="text-align:center">Welcome to your profile page, <b>{{user}}</b>!</h3><br>
+  <center><img style="height:400px;width:590px" src="https://www.marketingsignals.com/wp-content/uploads/2017/08/once-upon-a-time.jpg" alt="Inspiration here."></center>
+   <h3 style="padding:0;text-align:center"><a href='/base'>New Stories</a>&nbsp&nbsp
+     <a href='/edited_stories'>My Stories</a></h3><br><br>
+  <h4 style="text-align:center"><a href="/logout">Logout</a></h4>
+</p>
 {% endblock content %}

@@ -36,7 +36,6 @@ After doing so, you can run the application by cding into the repo and running:
 
 ```
 $ cd aesop
-$ python utils/database.py
 $ python app.py
 ```
 
