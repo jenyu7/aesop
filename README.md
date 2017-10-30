@@ -2,7 +2,7 @@
 
 ## Roster
 
-Arif Roktim, Charles Weng, Jenny Yu, Shannon Lau, Samantha Ngo
+Arif Roktim, Charles Weng, Jen Yu, Shannon Lau, Samantha Ngo
 
 ### Collaborative Story Telling Website
 
