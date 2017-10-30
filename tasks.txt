@@ -1,16 +1,19 @@
 Current Tasks: 
-
-Login database - Charles
-Improve the crappy current base template and include a dope navbar - Samantha
-Create basic form for adding and creation - Samantha
-Adding onto a story - Jen
-  - editing the database based on id
-  - add to history table 
-Creation of new story - Shannon
-  - adding onto database of all stories
-  - add to history table
-
+- Fix login so that it stays on the same page after logging in
+- Create a stable database - one that doesn't need to be recreated every time we run the 
+program
+- ****Add more test stories and users
+- Logout button
 
 Already Done:
 - Login System
 - All tables in database
+- Create basic form for adding and creation - Samantha
+- Improve the crappy current base template and include a dope navbar - Samantha
+- Create login database - Charles
+- Creation of new story - Shannon
+  - adding onto database of all stories
+  - add to history table
+- Adding onto a story - Jen
+  - editing the database based on id
+  - add to history table 

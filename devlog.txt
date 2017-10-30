@@ -43,6 +43,9 @@ jenY -- 2017-10-26 13:06
 add fxn renders correct webpage
 (commit thru slau's account)
 
+samanthaN -- 2017-10-26 12:45
+Set up base templates - base.html, create.html
+
 shannonL -- 2017-10-26 18:45
 Added create feature on app.py
 
@@ -54,6 +57,10 @@ updated readme and database to match schema
 
 shannonL -- 2017-10-27 10:59
 fixed base.html, removed /auth link
+
+samanthaN -- 2017-10-27 10:41
+Set up base templates - edited_stories.html
+Added test variables
 
 shannonL -- 2017-10-27 13:19
 added new_sID generator in database.py
@@ -79,6 +86,9 @@ jenY -- 2017-10-29 15:01
 fixed up all insert statements & deleted helpers
   - errors because of concatenation of sqlite3 commands
 
+samanthaN -- 2017-10-29 15:37
+  - can now update stories on homepage
+
 jenY -- 2017-10-29 15:58
 added navbar at top of page
 fixed up templates
@@ -86,3 +96,7 @@ fixed up templates
 jenY -- 2017-10-29 17:14
 users can only edit a story once
 usage of query strings
+
+samanthaN -- 2017-10-29 19:29
+  - created view_story.html
+  - can now view stories user has edited
