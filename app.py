@@ -132,7 +132,6 @@ def edited_stories():
         flash("You must log in to view your stories!")
         return redirect(url_for('authentication'))
     else:
-        link = '/view_story?id='
         user = session.get('username')
         ids = database.getUserStories(user)
         print ids
@@ -141,6 +140,7 @@ def edited_stories():
         # While there is still another story in the story database, display it
         i = 0
         while i < len(ids):
+            link = '/view_story?id='
             link += str(ids[i])
             info = database.getStory(ids[i])
             print "info: ", info
