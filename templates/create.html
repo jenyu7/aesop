@@ -3,8 +3,8 @@
 {% block content %}
 
 <form action = '/create_story' method = 'POST' style="text-align:center">
-  Title:<input type = 'text' name = 'title'><br>
-  Content:<br><textarea name='content' cols="40" rows="5"></textarea><br>
+  Title:<input type = 'text' name = 'title' required><br>
+  Content:<br><textarea name='content' cols="40" rows="5" required></textarea><br>
   <input type = 'submit' name ='create'> &nbsp <input type="submit" value="Cancel" name="cancel">
 </form>
 

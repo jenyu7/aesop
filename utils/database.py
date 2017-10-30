@@ -22,9 +22,9 @@ if __name__ == '__main__':
 
 #---------------------------
 
-    
+
 #-----FUNCTIONS FOR LOGIN SYSTEM-----
-    
+
 # returns a dictionary for user data {user: pass}
 def getUsers():
     db = sqlite3.connect("data/aesop.db")
@@ -56,16 +56,20 @@ def addUser(user, password):
 def new_sID():
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
-    max_id = c.execute("SELECT MAX(sID) FROM stories")
-    print max_id
-    # return int(max_id[0][0]) + 1
+    data = c.execute("SELECT MAX(sID) FROM stories")
+    print data
+    for i in data:
+        max_id = i[0]
+    return int(max_id) + 1
 
 # adds a row to stories with these starting values
-def create(sID, name, update):
+def create(sID, title, content, user):
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()
-    vals = [str(sID), name, update, update]
-    c.execute("INSERT INTO stories VALUES(?, ?, ?, ?)", vals)
+    vals0 = [str(sID), title, content, content]
+    vals1 = [str(sID), user, content]
+    c.execute("INSERT INTO stories VALUES(?, ?, ?, ?)", vals0)
+    c.execute("INSERT INTO history VALUES(?, ?, ?)", vals1)
     db.commit()
     db.close()
 
@@ -120,4 +124,3 @@ def getUserStories(username):
         stories.append(line[0])
     db.close()
     return stories
-

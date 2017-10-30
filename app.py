@@ -114,10 +114,13 @@ def create_story():
     if not session.get('username'):
         flash("You must log in to create a new story!")
         return redirect(url_for('authentication'))
+    elif request.form.get('cancel'):
+        return redirect(url_for('edited_stories'))
     elif request.form.get("create"):
+        user = session.get('username')
         title = request.form.get("title")
         content = request.form.get("content")
-        return edit.create(title, content)
+        return edit.create(user, title, content)
     else:
         return render_template("create.html")
 
@@ -130,7 +133,8 @@ def edited_stories():
         return redirect(url_for('authentication'))
     else:
         link = '/view_story?id='
-        ids = database.getUserStories("jen")
+        user = session.get('username')
+        ids = database.getUserStories(user)
         print ids
         # Dictionary for stories in the form of Title: id
         stories = {}
