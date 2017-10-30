@@ -42,6 +42,10 @@ def root():
 
 @app.route('/base')
 def homepage():
+    if session.get('username'):
+        loggedIn = True
+    else:
+        loggedIn = False
     # print database.getStory(0)
     # Dictionary for stories in the form of Title: [id, content, link]
     stories = {}
@@ -60,7 +64,7 @@ def homepage():
             print "No more stories in database."
             break;
     print stories
-    return render_template('base.html', stories=stories)
+    return render_template('base.html', stories=stories, loggedIn = loggedIn)
 
 
 # Profile page - shows profile stats and (if time, allow them to change password)
@@ -69,7 +73,7 @@ def profile():
     if not session.get('username'):
         flash("Not logged in")
         return redirect(url_for('authentication'))
-    return render_template('profile.html', user=session.get('username'))
+    return render_template('profile.html', user=session.get('username'), loggedIn=True)
 
 
 # Logged Out Page
@@ -81,6 +85,7 @@ def logout():
         flash("Logged out")
         session.pop('username')
     return redirect(url_for('authentication'))
+
 '''
 @app.route('/view_story')
 def view():
@@ -106,7 +111,7 @@ def add_story():
         title = title[1]
         if edit.verify(id):
             print "render add"
-            return render_template("add.html", title=title)
+            return render_template("add.html", title=title, loggedIn=True)
         else:
             flash("You have already contributed to this story.")
             return redirect(url_for('profile'))
@@ -125,7 +130,7 @@ def create_story():
         content = request.form.get("content")
         return edit.create(user, title, content)
     else:
-        return render_template("create.html")
+        return render_template("create.html", loggedIn=True)
 
 
 # Show the stories you've edited
@@ -151,7 +156,7 @@ def edited_stories():
             stories[info[1]] = [ids[i], link]
             i += 1
         print "STORIES: ", stories
-        return render_template('edited_stories.html', stories=stories)
+        return render_template('edited_stories.html', stories=stories, loggedIn=True)
 
 # View each edited story in full
 @app.route('/view_story')
@@ -165,7 +170,7 @@ def view_story():
         info = database.getStory(id)
         title = info[1]
         content = info[2]
-        return render_template('view_story.html', story_id=id, title=title, full_story=content)
+        return render_template('view_story.html', story_id=id, title=title, full_story=content, loggedIn=True)
 
 if __name__ == "__main__":
     app.debug = True

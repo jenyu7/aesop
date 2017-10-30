@@ -34,8 +34,14 @@
 	<img src = "static/book.png">
       </div>
       <ul class="nav navbar-nav navbar-right">
-	<li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-	<li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+	{% block icons %}
+             {% if loggedIn %}
+                 <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+             {% else %}
+	         <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	         <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+             {% endif %}
+        {% endblock icons %}
       </ul>
     </div>
   </nav>
