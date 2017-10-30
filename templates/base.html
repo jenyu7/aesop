@@ -71,8 +71,9 @@
 	  <h3 style="text-align:left"> &nbsp Last Entry:<br>
 	  <blockquote style="text-align:left" >
 	    <i> {{ stories[title][1] }} </i>
-	     <br><br>
 	  </blockquote>
+	   <a href={{link}}>&nbsp Edit This Story </a><br><br>
+	    <!-- Use request.args.get("id") to access the story's id-->
 	{% endfor %}
         </p>
 

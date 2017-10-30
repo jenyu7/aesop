@@ -46,10 +46,12 @@ def homepage():
     # Dictionary for stories in the form of Title: [id, content]
     stories = {}
     L = [-1, ""]
+    link = "/add_story?id="
     # While there is still another story in the story database, display it
     story_id = 0
     while story_id >= 0:
         try:
+            link += str(story_id)
             info = database.getStory(story_id)
             stories[info[1]] = [story_id, info[3]]
             story_id += 1
@@ -57,7 +59,7 @@ def homepage():
             print "No more stories in database."
             break;
     print stories
-    return render_template('base.html', stories=stories)
+    return render_template('base.html', stories=stories, link=link)
 
 
 # Profile page - shows profile stats and (if time, allow them to change password)

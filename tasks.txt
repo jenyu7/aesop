@@ -4,6 +4,12 @@ Current Tasks:
 program
 - ****Add more test stories and users
 - Logout button
+- Creation of new story - Shannon
+  - adding onto database of all stories
+  - add to history table
+- Adding onto a story - Jen
+  - editing the database based on id
+  - add to history table 
 
 Already Done:
 - Login System
@@ -14,6 +20,3 @@ Already Done:
 - Creation of new story - Shannon
   - adding onto database of all stories
   - add to history table
-- Adding onto a story - Jen
-  - editing the database based on id
-  - add to history table 
