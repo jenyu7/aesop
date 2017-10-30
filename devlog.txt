@@ -107,3 +107,4 @@ did some mighty debugging in app.py
 
 wengC -- 2017-10-30 23:52:45
 html files now look much better
+readme includes database restart instructions
