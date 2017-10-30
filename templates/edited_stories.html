@@ -5,10 +5,13 @@
 	<p style="text-align:center;">
     <h1 style="text-align:center">My Stories</h1><br>
 
-		<!-- For each story, display last entry and a button that says "See story progress"; start from the most recent and go to the rest-->
+		<!-- For each story, display last entry and a button that says "See story progress"
+		 start from the most recent and go to the rest-->
 	  <center>
-			<a href='/base'> &nbsp Edit another story</a><br> <!--Redirect to home page(base.html)-->
-			<a href='/create_story'> &nbsp Create new story</a><br> <!--Redirect to add entry form--></center>
+			<!--Redirect to home page(base.html)-->
+			<a href='/base'> &nbsp Edit another story</a><br>
+			<!--Redirect to add entry form--></center>
+			<a href='/create_story'> &nbsp Create new story</a><br>
 			<p>
 			<!-- Stories dictionary: {{stories}}-->
 			{% for title in stories %}
