@@ -101,11 +101,11 @@ def add_story():
     if not session.get('username'):
         flash("You must log in to add on to the story!")
         return redirect(url_for('authentication'))
-    # What is the purpose of this elif?
     elif request.form.get("update"):
         user = session.get('username')
         content = request.form.get("content")
-        return edit.add(user, content)
+        sID = request.form.get("sID")
+        return edit.add(sID, user, content)
     else:
         id = request.args.get("id")
         print "-------------\n\n"
@@ -116,10 +116,10 @@ def add_story():
         title = title[1]
         if edit.verify(id):
             print "render add"
-            return render_template("add.html", title=title, loggedIn=True, link=link)
+            return render_template("add.html", title=title, loggedIn=True, link=link, sID = id)
         else:
             flash("You have already contributed to this story.")
-            return redirect(url_for('profile'))
+            return redirect('base')
 
 # Create new story
 @app.route('/create_story', methods=['GET', 'POST'])
@@ -127,8 +127,6 @@ def create_story():
     if not session.get('username'):
         flash("You must log in to create a new story!")
         return redirect(url_for('authentication'))
-    elif request.form.get('cancel'):
-        return redirect(url_for('edited_stories'))
     elif request.form.get("create"):
         user = session.get('username')
         title = request.form.get("title")

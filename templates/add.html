@@ -5,8 +5,7 @@
   <form action = '/add_story' method = 'POST' style="text-align:center">
   <h3><b> Title:</b> {{title}} <br></h3>
   Content: <br><textarea name='content' cols="40" rows="5" required></textarea><br>
- <a href={{link}} id="update"> Create </a>&nbsp <input type="submit" value="Cancel" name="cancel">
+  <input type = 'hidden' name = 'sID' value = {{ sID }}>
+ <input type = 'submit' name='update'>&nbsp <a href="/base">Cancel</a>
   </form>
 {% endblock content %}
-
-  

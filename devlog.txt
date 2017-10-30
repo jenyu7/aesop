@@ -103,8 +103,18 @@ samanthaN -- 2017-10-29 19:29
 
 shannonL -- 2017-10-29 22:59
 finished create story feature
+  - added sID-generator based on highest value of sID of stories
 did some mighty debugging in app.py
 
 wengC -- 2017-10-30 23:52:45
 html files now look much better
 readme includes database restart instructions
+
+shannonL -- 2017-10-20 02:53
+DID SOME MIGHTY DEBUGGING AND REFORMATTING
+  - redirected to correct sites
+  - accounted for cancel link
+  - prevented blank inputs
+  - organized jinja to produce correct content on edited_stories.html
+fixed the add feature to correspond to correct id
+  - uses hidden input to pass id

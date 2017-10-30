@@ -59,9 +59,12 @@ def new_sID():
     c = db.cursor()
     data = c.execute("SELECT MAX(sID) FROM stories")
     print data
-    for i in data:
-        max_id = i[0]
-    return int(max_id) + 1
+    try:
+        for i in data:
+            max_id = i[0]
+        return int(max_id) + 1
+    except:
+        return 0
 
 
 # adds a row to stories with these starting values

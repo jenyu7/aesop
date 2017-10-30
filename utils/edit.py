@@ -10,10 +10,10 @@ def create(user, title, content):
     return redirect('edited_stories')
 
 
-def add(user, content):
-    database.addUpdate(0, str(user), str(content))
+def add(sID, user, content):
+    database.addUpdate(sID, str(user), str(content))
     flash("added " + str(content) + "!!")
-    return redirect(url_for('profile'))
+    return redirect('base')
 
 
 # checks if user has already edited story
