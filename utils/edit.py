@@ -1,18 +1,22 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 import database
 
+# scripts for editing stories
+
 def create(user, title, content):
     sID = database.new_sID()
     database.create(sID, title, content, user)
     flash("added " + str(title) + ": " + str(content))
     return redirect('edited_stories')
 
+
 def add(user, content):
     database.addUpdate(0, str(user), str(content))
     flash("added " + str(content) + "!!")
     return redirect(url_for('profile'))
 
-#checks if user has already edited story
+
+# checks if user has already edited story
 def verify(id):
     user = session.get('username')
     history = database.getHistory(id)
