@@ -127,6 +127,7 @@ def edited_stories():
         flash("You must log in to view your stories!")
         return redirect(url_for('authentication'))
     else:
+        link = '/view_story?id='
         ids = database.getUserStories("jen")
         print ids
         # Dictionary for stories in the form of Title: id
@@ -134,12 +135,13 @@ def edited_stories():
         # While there is still another story in the story database, display it
         i = 0
         while i < len(ids):
-                info = database.getStory(ids[i])
-                print "info: ", info
-                stories[info[1]] = ids[i]
-                i += 1
+            link += str(ids[i])
+            info = database.getStory(ids[i])
+            print "info: ", info
+            stories[info[1]] = ids[i]
+            i += 1
         print stories
-        return render_template('edited_stories.html', stories=stories)
+        return render_template('edited_stories.html', stories=stories, link=link)
 
 # View each edited story in full
 @app.route('/view_story')
@@ -148,7 +150,12 @@ def view_story():
         flash("You must log in to view your stories!")
         return redirect(url_for('authentication'))
     else:
-        return "Popcorn"
+        id = int(request.args.get("id"))
+        print "REQUESTED ID: " + str(id)
+        info = database.getStory(id)
+        title = info[1]
+        content = info[2]
+        return render_template('view_story.html', story_id=id, title=title, full_story=content)
 
 if __name__ == "__main__":
     app.debug = True
