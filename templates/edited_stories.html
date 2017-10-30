@@ -26,8 +26,8 @@
 	{% for title in stories %}
 	<!-- Stories dictionary: {{stories}}-->
 	<p>
-	  <h3 style="text-align:left"> &nbsp Story#: <i> {{ stories[title] }} </i>
-	  <h2 style="text-align:left"> &nbsp Title: <i> {{ title }} </i><br></h2>	    <h4 style="text-align:left"><i> <a href= {{link}}> Read Full Story</i><br></h4>
+	  <h3 style="text-align:left"> &nbsp Story#: <i> {{ stories[title][0] }} </i>
+	  <h2 style="text-align:left"> &nbsp Title: <i> {{ title }} </i><br></h2>	    <h4 style="text-align:left"><i> <a href= {{stories[title][1]}}> Read Full Story</i><br></h4>
 
 	    <br><br>
 	{% endfor %}

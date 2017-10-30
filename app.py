@@ -43,23 +43,24 @@ def root():
 @app.route('/base')
 def homepage():
     # print database.getStory(0)
-    # Dictionary for stories in the form of Title: [id, content]
+    # Dictionary for stories in the form of Title: [id, content, link]
     stories = {}
-    L = [-1, ""]
-    link = "/add_story?id="
+    L = [-1, "",""]
+    link = ""
     # While there is still another story in the story database, display it
     story_id = 0
     while story_id >= 0:
         try:
+            link = "/add_story?id="
             link += str(story_id)
             info = database.getStory(story_id)
-            stories[info[1]] = [story_id, info[3]]
+            stories[info[1]] = [story_id, info[3], link]
             story_id += 1
         except:
             print "No more stories in database."
             break;
     print stories
-    return render_template('base.html', stories=stories, link=link)
+    return render_template('base.html', stories=stories)
 
 
 # Profile page - shows profile stats and (if time, allow them to change password)
@@ -101,9 +102,11 @@ def add_story():
         print "-------------\n\n"
         print id
         print "-------------\n\n"
+        title = database.getStory(id)
+        title = title[1]
         if edit.verify(id):
             print "render add"
-            return render_template("add.html")
+            return render_template("add.html", title=title)
         else:
             flash("You have already contributed to this story.")
             return redirect(url_for('profile'))
@@ -135,8 +138,9 @@ def edited_stories():
         user = session.get('username')
         ids = database.getUserStories(user)
         print ids
-        # Dictionary for stories in the form of Title: id
+        # Dictionary for stories in the form of Title: [id, link]
         stories = {}
+        L = [0, ""]
         # While there is still another story in the story database, display it
         i = 0
         while i < len(ids):
@@ -144,10 +148,10 @@ def edited_stories():
             link += str(ids[i])
             info = database.getStory(ids[i])
             print "info: ", info
-            stories[info[1]] = ids[i]
+            stories[info[1]] = [ids[i], link]
             i += 1
-        print stories
-        return render_template('edited_stories.html', stories=stories, link=link)
+        print "STORIES: ", stories
+        return render_template('edited_stories.html', stories=stories)
 
 # View each edited story in full
 @app.route('/view_story')

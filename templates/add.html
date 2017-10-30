@@ -2,9 +2,10 @@
 
 {% block content %}
 
-<form action = '/add_story' method = 'POST'>
-  <input style="height:300px;width:500px" type = 'text' name = 'content' required><br>
-  <input type = 'submit' name = 'update'>
+<form action = '/add_story' method = 'POST' style="text-align:center">
+ <h3><b> Title:</b> {{title}} <br></h3>
+  Content:<br><textarea name='content' cols="40" rows="5" required></textarea><br>
+  <input type = 'submit' name ='update'> &nbsp <input type="submit" value="Cancel" name="cancel">
 </form>
 
 {% endblock content %}
