@@ -54,6 +54,7 @@ def addUser(user, password):
 
 
 # generates a new id for the story (sID)
+# returns the next available sID
 def new_sID():
     db = sqlite3.connect("data/aesop.db")
     c = db.cursor()

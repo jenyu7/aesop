@@ -3,6 +3,7 @@ import database
 
 # scrits for logging in
 
+
 # Logs user in (from form)
 def login():
     users = database.getUsers()

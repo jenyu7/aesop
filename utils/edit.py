@@ -1,7 +1,8 @@
-from flask import Flask, render_template, redirect, url_for, request, session, flash
+from flask import redirect, session, flash
 import database
 
 # scripts for editing stories
+
 
 def create(user, title, content):
     sID = database.new_sID()
